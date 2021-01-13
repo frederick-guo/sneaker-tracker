@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoos.Schema;
+const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-    product: {
+    productName: {
         type: String,
         required: true,
         unique: true,
@@ -16,4 +16,4 @@ const productSchema = new Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
-module.exports = User;
+module.exports = Product;

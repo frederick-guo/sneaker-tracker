@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoos.Schema;
+const Schema = mongoose.Schema;
 
-const detailSchema = new Schema({
+const descriptionSchema = new Schema({
     product: { type: String, required: true },
-    description: { type: String, required: true },
+    comments: { type: String, required: true },
     size: {type: Number, required: true},
     price: {type: Number, required: true},
     date: { type: Date, required: true },
@@ -12,6 +12,6 @@ const detailSchema = new Schema({
     timestamps: true,
 });
   
-const Detail = mongoose.model('Detail', detailSchema);
+const Description = mongoose.model('Description', descriptionSchema);
   
-module.exports = Detail;
+module.exports = Description;
