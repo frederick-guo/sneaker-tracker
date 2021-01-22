@@ -1,0 +1,147 @@
+App.js
+
+import React from 'react';
+import { BrowserRouter as Router, Route} from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import Navbar from "./components/navbar.component"
+import DescriptionList from "./components/description-list.component";
+import EditDescription from "./components/edit-description.component";
+import CreateDescription from "./components/create-description.component";
+import CreateProduct from "./components/create-product.component";
+
+
+function App() {
+  return (
+    <Router>
+    <div className="container">
+    <Navbar />
+    <br/>
+        <Route path="/" exact component={DescriptionList} />
+        <Route path="/edit/:id" component={EditDescription} />
+        <Route path="/create" component={CreateDescription} />
+        <Route path="/user" component={CreateProduct} />
+    </div>
+    </Router>
+  );
+}
+
+export default App;
+
+
+
+navbar.component.js
+
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
+export default class Navbar extends Component {
+
+  render() {
+    return (
+      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
+        <Link to="/" className="navbar-brand">SneakerTracker</Link>
+        <div className="collpase navbar-collapse">
+        <ul className="navbar-nav mr-auto">
+          <li className="navbar-item">
+          <Link to="/" className="nav-link">ProductDescriptions</Link>
+          </li>
+          <li className="navbar-item">
+          <Link to="/create" className="nav-link">Create Product Description Log</Link>
+          </li>
+          <li className="navbar-item">
+          <Link to="/user" className="nav-link">Create Product</Link>
+          </li>
+        </ul>
+        </div>
+      </nav>
+    );
+  }
+}
+
+
+
+create-description.component.js
+
+import React, { Component } from 'react';
+
+export default class CreateDescription extends Component {
+    constructor(props) {
+        super(props);
+
+        this.onChangeProduct = this.onChangeProduct.bind(this);
+        this.onChangeComments = this.onChangeComments.bind(this);
+        this.onChangeSize = this.onChangeSize.bind(this);
+        this.onChangePrice = this.onChangePrice.bind(this);
+        this.onChangeDate = this.onChangeDate.bind(this);
+
+
+        this.state = {
+            product: '',
+            comments: '',
+            size: 0,
+            price: 0,
+            date: new Date(),
+            listOfProducts: []
+        }
+
+        componentDidMount() {
+            this.setState({
+                listofProducts: ['test product'],
+                product: 'test product'
+            });
+        }
+
+        onChangeProduct(e) {
+            this.setState({
+                product: e.target.value
+            });
+        }
+
+        onChangeComments(e) {
+            this.setState({
+                comments: e.target.value
+            });
+        }
+
+        onChangeSize(e) {
+            this.setState({
+                size: e.target.value
+            });
+        }
+
+        onChangePrice(e) {
+            this.setState({
+                price: e.target.value
+            });
+        }
+        onChangeDate(date) {
+            this.setState({
+                date: date
+            });
+        }
+
+        onSubmit(e){
+            e.preventDefault();
+
+            const description = {
+                product: this.state.product,
+                comments: this.state.comments,
+                size: this.state.size,
+                price: this.state.price,
+                date: this.state.date
+            }
+
+            console.log(description);
+
+            window.location = '/'
+        }
+    }
+    render() {
+        return (
+            <div>
+                <p>You are on the Create Description component!</p>
+            </div>
+        )
+    }
+}
