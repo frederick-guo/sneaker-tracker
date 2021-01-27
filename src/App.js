@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/navbar.component"
 import ProductList from "./components/product-list.component";
 import EditProduct from "./components/edit-product.component";
-import CreateProduct from "./components/create-category.component";
+import CreateProduct from "./components/create-product.component";
 import CreateCategory from "./components/create-category.component";
 
 
