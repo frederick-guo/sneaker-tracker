@@ -19,12 +19,12 @@ connection.once('open', () => {
 })
 
 
-const descriptionsRouter = require('./routes/descriptions');
 const productsRouter = require('./routes/products');
+const categoriesRouter = require('./routes/categories');
 
 
-app.use('/descriptions', descriptionsRouter);
 app.use('/products', productsRouter);
+app.use('/categories', categoriesRouter);
 
 
 

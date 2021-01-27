@@ -1,19 +1,19 @@
 const router = require('express').Router();
-let Product = require('../models/product.model');
+let Category = require('../models/category.model');
 
 router.route('/').get((req, res) => {
-  Product.find()
-    .then(products => res.json(products))
+  Category.find()
+    .then(category => res.json(products))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.route('/add').post((req, res) => {
-  const productName = req.body.productName;
+  const categoryName = req.body.categoryName;
 
-  const newProduct = new Product({productName});
+  const newCategory = new Category({categoryName});
 
-  newProduct.save()
-    .then(() => res.json('Product added!'))
+  newCategory.save()
+    .then(() => res.json('Category added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
