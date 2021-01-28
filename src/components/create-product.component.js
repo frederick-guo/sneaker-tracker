@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
 
 export default class CreateProduct extends Component {
     constructor(props) {
@@ -15,7 +17,7 @@ export default class CreateProduct extends Component {
             productName: '',
             description: '',
             price: 0,
-            paidFor: 0,
+            paidFor: '',
             date: new Date(),
             listOfProducts: []
         }
@@ -23,7 +25,7 @@ export default class CreateProduct extends Component {
 
     componentDidMount() {
         this.setState({
-            listofProducts: ['test product'],
+            listOfProducts: ['test product'],
             productName: 'test product'
         });
     }
@@ -77,8 +79,67 @@ export default class CreateProduct extends Component {
     render() {
         return (
             <div>
-                <p>You are on the Create Product component!</p>
+              <h3>Create New product Log</h3>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group"> 
+                  <label>Category: </label>
+                  <select ref="userInput"
+                      required
+                      className="form-control"
+                      value={this.state.productName}
+                      onChange={this.onChangeProductName}>
+                      {
+                        this.state.listOfProducts.map(function(productName) {
+                          return <option 
+                            key={productName}
+                            value={productName}>{[productName]}
+                            </option>;
+                        })
+                      }
+                  </select>
+                </div>
+                <div className="form-group"> 
+                  <label>Description: </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.description}
+                      onChange={this.onChangeDescription}
+                      />
+                </div>
+                <div className="form-group">
+                  <label>Price: </label>
+                  <input 
+                      type="text" 
+                      className="form-control"
+                      value={this.state.price}
+                      onChange={this.onChangePrice}
+                      />
+                </div>
+                <div className="form-group"> 
+                  <label>Has it been paid for? </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.paidFor}
+                      onChange={this.onChangePaidFor}
+                      />
+                </div>
+                <div className="form-group">
+                  <label>Date: </label>
+                  <div>
+                    <DatePicker
+                      selected={this.state.date}
+                      onChange={this.onChangeDate}
+                    />
+                  </div>
+                </div>
+        
+                <div className="form-group">
+                  <input type="submit" value="Create Product Log" className="btn btn-primary" />
+                </div>
+              </form>
             </div>
-        )
+            )
     }
 }
