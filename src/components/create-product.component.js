@@ -11,6 +11,7 @@ export default class CreateProduct extends Component {
         this.onChangePrice = this.onChangePrice.bind(this);
         this.onChangePaidFor = this.onChangePaidFor.bind(this);
         this.onChangeDate = this.onChangeDate.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
 
         this.state = {
