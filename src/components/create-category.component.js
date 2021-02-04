@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class CreateCategory extends Component {
   constructor(props) {
@@ -26,6 +27,9 @@ export default class CreateCategory extends Component {
     }
 
     console.log(category);
+
+    axios.post('http://localhost:5000/categories/add', category)
+      .then(res => console.log(res.data));
 
 
     this.setState({

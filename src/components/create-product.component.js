@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -6,6 +7,7 @@ export default class CreateProduct extends Component {
     constructor(props) {
         super(props);
 
+        this.onChangeCategoryName = this.onChangeCategoryName.bind(this)
         this.onChangeProductName = this.onChangeProductName.bind(this);
         this.onChangeDescription = this.onChangeDescription.bind(this);
         this.onChangePrice = this.onChangePrice.bind(this);
@@ -15,20 +17,33 @@ export default class CreateProduct extends Component {
 
 
         this.state = {
+            categoryName: '',
             productName: '',
             description: '',
             price: 0,
             paidFor: '',
             date: new Date(),
-            listOfProducts: []
+            listOfCategories: []
         }
     }
 
     componentDidMount() {
-        this.setState({
-            listOfProducts: ['test product'],
-            productName: 'test product'
-        });
+        axios.get('http://localhost:5000/categories/')
+          .then(response => {
+            if (response.data.length > 0) {
+              this.setState({
+                listOfCategories: response.data.map(category => category.categoryName),
+                categoryName: response.data[0].categoryName
+              })
+            }
+          })
+        
+    }
+
+    onChangeCategoryName(e) {
+      this.setState({
+        categoryName: e.target.value
+      })
     }
 
     onChangeProductName(e) {
@@ -65,6 +80,7 @@ export default class CreateProduct extends Component {
         e.preventDefault();
 
         const product = {
+            categoryName: this.state.categoryName,
             productName: this.state.productName,
             description: this.state.description,
             price: this.state.price,
@@ -73,6 +89,9 @@ export default class CreateProduct extends Component {
         }
 
         console.log(product);
+
+        axios.post('http://localhost:5000/products/add', product)
+          .then(res => console.log(res.data));
 
         window.location = '/'
     }
@@ -87,17 +106,26 @@ export default class CreateProduct extends Component {
                   <select ref="userInput"
                       required
                       className="form-control"
-                      value={this.state.productName}
-                      onChange={this.onChangeProductName}>
+                      value={this.state.categoryName}
+                      onChange={this.onChangeCategoryName}>
                       {
-                        this.state.listOfProducts.map(function(productName) {
+                        this.state.listOfCategories.map(function(categoryName) {
                           return <option 
-                            key={productName}
-                            value={productName}>{[productName]}
+                            key={categoryName}
+                            value={categoryName}>{[categoryName]}
                             </option>;
                         })
                       }
                   </select>
+                </div>
+                <div className="form-group"> 
+                  <label>Product: </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.productName}
+                      onChange={this.onChangeProductName}
+                      />
                 </div>
                 <div className="form-group"> 
                   <label>Description: </label>
