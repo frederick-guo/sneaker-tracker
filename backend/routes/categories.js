@@ -3,7 +3,7 @@ let Category = require('../models/category.model');
 
 router.route('/').get((req, res) => {
   Category.find()
-    .then(category => res.json(products))
+    .then(listOfCategories => res.json(listOfCategories))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
