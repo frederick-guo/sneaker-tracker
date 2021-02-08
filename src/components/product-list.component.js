@@ -20,7 +20,7 @@ export default class ProductList extends Component {
     constructor(props) {
         super(props);
 
-        this.deleteProduct = this.deleteProtect.bind(this);
+        this.deleteProduct = this.deleteProduct.bind(this);
 
         this.state = {products: []};
     }
@@ -30,13 +30,13 @@ export default class ProductList extends Component {
             .then(response => {
                 this.setState({ products: response.data})
             })
-            .catach((error) => {
+            .catch((error) => {
                 console.log(error);
             })
     }
 
 
-    deleteExercise(id) {
+    deleteProduct(id) {
         axios.delete('http://localhost:5000/products'+id)
             .then(res => console.log(res.data));
 
@@ -60,7 +60,7 @@ export default class ProductList extends Component {
               <thead className="thead-light">
                 <tr>
                   <th>Category</th>
-                  <th>Prodcut</th>
+                  <th>Product</th>
                   <th>Description</th>
                   <th>Price</th>
                   <th>Is it paid for?</th>
