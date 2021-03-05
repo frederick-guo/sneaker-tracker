@@ -1,0 +1,126 @@
+form code for create-product and edit-product
+
+render() {
+        return (
+            <div>
+              <h3>Edit Product Log</h3>
+              <form onSubmit={this.onSubmit}>
+                <div className="form-group"> 
+                  <label>Category: </label>
+                  <select ref="userInput"
+                      required
+                      className="form-control"
+                      value={this.state.categoryName}
+                      onChange={this.onChangeCategoryName}>
+                      {
+                        this.state.listOfCategories.map(function(categoryName) {
+                          return <option 
+                            key={categoryName}
+                            value={categoryName}>{[categoryName]}
+                            </option>;
+                        })
+                      }
+                  </select>
+                </div>
+                <div className="form-group"> 
+                  <label>Product: </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.productName}
+                      onChange={this.onChangeProductName}
+                      />
+                </div>
+                <div className="form-group"> 
+                  <label>Description: </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.description}
+                      onChange={this.onChangeDescription}
+                      />
+                </div>
+                <div className="form-group">
+                  <label>Price: </label>
+                  <input 
+                      type="text" 
+                      className="form-control"
+                      value={this.state.price}
+                      onChange={this.onChangePrice}
+                      />
+                </div>
+                <div className="form-group"> 
+                  <label>Has it been paid for? </label>
+                  <select ref="userInput"
+                      required
+                      className="form-control"
+                      value={this.state.paidFor}
+                      onChange={this.onChangePaidFor}>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Date: </label>
+                  <div>
+                    <DatePicker
+                      selected={this.state.date}
+                      onChange={this.onChangeDate}
+                    />
+                  </div>
+                </div>
+        
+                <div className="form-group">
+                  <input type="submit" value="Edit Product Log" className="btn btn-primary" />
+                </div>
+              </form>
+            </div>
+            )
+    }
+}
+
+package-lock.json file *added domain*
+
+{
+  "name": "sneaker-tracker-app",
+  "homepage": "https://aloyum.xyz",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
+    "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "react": "^17.0.1",
+    "react-datepicker": "^3.4.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "4.0.1",
+    "web-vitals": "^0.2.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
