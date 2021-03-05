@@ -1,5 +1,6 @@
 {
   "name": "sneaker-tracker-app",
+  "homepage": "https://aloyum.xyz",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

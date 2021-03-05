@@ -163,12 +163,14 @@ export default class EditProduct extends Component {
                 </div>
                 <div className="form-group"> 
                   <label>Has it been paid for? </label>
-                  <input  type="text"
+                  <select ref="userInput"
                       required
                       className="form-control"
                       value={this.state.paidFor}
-                      onChange={this.onChangePaidFor}
-                      />
+                      onChange={this.onChangePaidFor}>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                  </select>
                 </div>
                 <div className="form-group">
                   <label>Date: </label>
