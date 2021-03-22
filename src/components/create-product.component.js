@@ -6,6 +6,7 @@ import "react-datepicker/dist/react-datepicker.css";
 export default class CreateProduct extends Component {
     constructor(props) {
         super(props);
+        
 
         this.onChangeCategoryName = this.onChangeCategoryName.bind(this)
         this.onChangeProductName = this.onChangeProductName.bind(this);
@@ -99,7 +100,7 @@ export default class CreateProduct extends Component {
     render() {
         return (
             <div>
-              <h3>Create New product Log</h3>
+              <h3>Create New Product Log</h3>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group"> 
                   <label>Category: </label>
@@ -147,14 +148,12 @@ export default class CreateProduct extends Component {
                 </div>
                 <div className="form-group"> 
                   <label>Has it been paid for? </label>
-                  <select ref="userInput"
+                  <input  type="text"
                       required
                       className="form-control"
                       value={this.state.paidFor}
-                      onChange={this.onChangePaidFor}>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                  </select>
+                      onChange={this.onChangePaidFor}
+                      />
                 </div>
                 <div className="form-group">
                   <label>Date: </label>
